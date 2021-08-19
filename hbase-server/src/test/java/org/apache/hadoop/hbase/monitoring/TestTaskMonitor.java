@@ -127,7 +127,7 @@ public class TestTaskMonitor {
   @Test
   public void testDoNotPurgeRPCTask() throws Exception {
     int RPCTaskNums = 10;
-    TaskMonitor tm = TaskMonitor.get();
+    TaskMonitor tm = new TaskMonitor(new Configuration());
     for(int i = 0; i < RPCTaskNums; i++) {
       tm.createRPCStatus("PRCTask" + i);
     }
