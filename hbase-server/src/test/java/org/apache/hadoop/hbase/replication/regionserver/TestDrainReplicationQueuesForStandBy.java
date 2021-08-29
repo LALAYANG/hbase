@@ -47,8 +47,10 @@ public class TestDrainReplicationQueuesForStandBy extends SyncReplicationTestBas
 
   @Test
   public void test() throws Exception {
-    UTIL2.getAdmin().transitReplicationPeerSyncReplicationState(PEER_ID,
-      SyncReplicationState.STANDBY);
+    if(UTIL2.getAdmin().getReplicationPeerSyncReplicationState(PEER_ID)!=SyncReplicationState.STANDBY) {
+      UTIL2.getAdmin().transitReplicationPeerSyncReplicationState(PEER_ID,
+        SyncReplicationState.STANDBY);
+    }
     UTIL1.getAdmin().transitReplicationPeerSyncReplicationState(PEER_ID,
       SyncReplicationState.ACTIVE);
     UTIL1.getAdmin().disableReplicationPeer(PEER_ID);
