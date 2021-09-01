@@ -61,4 +61,9 @@ public class MutableFastCounter extends MutableCounter {
   public long value() {
     return counter.sum();
   }
+
+  public void clear() {
+    counter.reset();
+    setChanged();
+  }
 }

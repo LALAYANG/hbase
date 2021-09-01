@@ -105,4 +105,12 @@ public class MetricsHeapMemoryManager {
   public void increaseAboveHeapOccupancyLowWatermarkCounter() {
     source.increaseAboveHeapOccupancyLowWatermarkCounter();
   }
+
+  public void clearAboveHeapOccupancyLowWatermarkCounter() {
+    source.clearAboveHeapOccupancyLowWatermarkCounter();
+  }
+
+  public void clearTunerDoNothingCounter() {
+    source.clearTunerDoNothingCounter();
+  }
 }

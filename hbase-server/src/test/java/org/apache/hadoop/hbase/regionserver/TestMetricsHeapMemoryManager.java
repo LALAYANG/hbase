@@ -67,6 +67,9 @@ public class TestMetricsHeapMemoryManager {
 
     HELPER.assertCounter("aboveHeapOccupancyLowWaterMarkCounter", 10L, source);
     HELPER.assertCounter("tunerDoNothingCounter", 11L, source);
+
+    source.clearAboveHeapOccupancyLowWatermarkCounter();
+    source.clearTunerDoNothingCounter();
   }
 
   @Test
