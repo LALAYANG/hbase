@@ -44,8 +44,8 @@ public class MetricsHeapMemoryManagerSourceImpl extends BaseSourceImpl implement
   private final MutableGaugeLong memStoreSizeGauge;
   private final MutableGaugeLong blockCacheSizeGauge;
 
-  private final MutableFastCounter doNothingCounter;
-  private final MutableFastCounter aboveHeapOccupancyLowWatermarkCounter;
+  private MutableFastCounter doNothingCounter;
+  private MutableFastCounter aboveHeapOccupancyLowWatermarkCounter;
 
   public MetricsHeapMemoryManagerSourceImpl() {
     this(METRICS_NAME, METRICS_DESCRIPTION, METRICS_CONTEXT, METRICS_JMX_CONTEXT);
