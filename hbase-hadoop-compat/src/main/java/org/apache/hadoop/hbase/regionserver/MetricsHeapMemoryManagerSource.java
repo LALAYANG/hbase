@@ -94,6 +94,16 @@ public interface MetricsHeapMemoryManagerSource extends BaseSource {
    */
   void increaseAboveHeapOccupancyLowWatermarkCounter();
 
+ /**
+   * Clear the counter for heap occupancy percent above low watermark
+   */
+  void clearAboveHeapOccupancyLowWatermarkCounter();
+
+  /**
+   * Clear the counter for tuner.
+   */
+  void clearTunerDoNothingCounter();
+
   // Histograms
   String BLOCKED_FLUSH_NAME = "blockedFlushes";
   String BLOCKED_FLUSH_DESC = "Histogram for the number of blocked flushes in the memstore";

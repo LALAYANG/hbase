@@ -140,4 +140,14 @@ public class MetricsHeapMemoryManagerSourceImpl extends BaseSourceImpl implement
   public void increaseAboveHeapOccupancyLowWatermarkCounter() {
     aboveHeapOccupancyLowWatermarkCounter.incr();
   }
+
+  @Override
+  public void clearAboveHeapOccupancyLowWatermarkCounter() {
+    aboveHeapOccupancyLowWatermarkCounter.clear();
+  }
+
+  @Override
+  public void clearTunerDoNothingCounter() {
+    doNothingCounter.clear();
+  }
 }
