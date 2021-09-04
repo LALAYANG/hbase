@@ -31,13 +31,13 @@ import org.apache.yetus.audience.InterfaceAudience;
 public class MetricsHBaseServerSourceImpl extends ExceptionTrackingSourceImpl
     implements MetricsHBaseServerSource {
   private final MetricsHBaseServerWrapper wrapper;
-  private final MutableFastCounter authorizationSuccesses;
-  private final MutableFastCounter authorizationFailures;
-  private final MutableFastCounter authenticationSuccesses;
-  private final MutableFastCounter authenticationFailures;
-  private final MutableFastCounter authenticationFallbacks;
-  private final MutableFastCounter sentBytes;
-  private final MutableFastCounter receivedBytes;
+  private MutableFastCounter authorizationSuccesses;
+  private MutableFastCounter authorizationFailures;
+  private MutableFastCounter authenticationSuccesses;
+  private MutableFastCounter authenticationFailures;
+  private MutableFastCounter authenticationFallbacks;
+  private MutableFastCounter sentBytes;
+  private MutableFastCounter receivedBytes;
 
 
   private MetricHistogram queueCallTime;
@@ -78,6 +78,17 @@ public class MetricsHBaseServerSourceImpl extends ExceptionTrackingSourceImpl
         REQUEST_SIZE_DESC);
     this.responseSize = this.getMetricsRegistry().newSizeHistogram(RESPONSE_SIZE_NAME,
               RESPONSE_SIZE_DESC);
+  }
+
+  @Override
+  public void teardown() {
+    authorizationSuccesses.clear();
+    authorizationFailures.clear();
+    authenticationSuccesses.clear();
+    authenticationFailures.clear();
+    authenticationFallbacks.clear();
+    sentBytes.clear();
+    receivedBytes.clear();
   }
 
   @Override

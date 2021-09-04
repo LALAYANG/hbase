@@ -48,6 +48,10 @@ public class MetricsHBaseServer {
                                           .create(serverName, wrapper);
   }
 
+  void teardown() {
+    source.teardown();
+  }
+
   void authorizationSuccess() {
     source.authorizationSuccess();
   }

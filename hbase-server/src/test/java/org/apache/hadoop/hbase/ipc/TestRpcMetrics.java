@@ -148,6 +148,7 @@ public class TestRpcMetrics {
     HELPER.assertCounter("exceptions.OutOfOrderScannerNextException", 1, serverSource);
     HELPER.assertCounter("exceptions.NotServingRegionException", 1, serverSource);
     HELPER.assertCounter("exceptions", 5, serverSource);
+    serverSource.teardown();
   }
 
   @Test
