@@ -75,6 +75,11 @@ public class ExceptionTrackingSourceImpl extends BaseSourceImpl
   }
 
   @Override
+  public void cleanexception() {
+    exceptions.clear();
+  }
+
+  @Override
   public void exception() {
     exceptions.incr();
   }

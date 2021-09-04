@@ -46,6 +46,7 @@ public interface ExceptionTrackingSource extends BaseSource {
 
   void exception();
 
+  void cleanexception()
   /**
    * Different types of exceptions
    */

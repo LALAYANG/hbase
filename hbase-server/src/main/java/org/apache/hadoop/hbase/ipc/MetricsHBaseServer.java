@@ -48,6 +48,10 @@ public class MetricsHBaseServer {
                                           .create(serverName, wrapper);
   }
 
+  void cleanexception() {
+    source.cleanexception();
+  }
+
   void teardown() {
     source.teardown();
   }
