@@ -71,7 +71,7 @@ public class TestMetricsTableAggregate {
 
   @Before
   public void setUp() {
-    tableName =name.getMethodName();
+    tableName = name.getMethodName();
     pre = "Namespace_default_table_" + tableName + "_metric_";
     tableWrapper = new MetricsTableWrapperStub(tableName);
     mt = new MetricsTable(tableWrapper);
@@ -83,6 +83,8 @@ public class TestMetricsTableAggregate {
 
   @Test
   public void testRequestMetrics() throws IOException {
+    rsm.updateFlush(tableName, 1, 2, 3);
+    rsm.updateFlush(tableName, 1, 2, 3);
     HELPER.assertCounter(pre + "readRequestCount", 10, agg);
     HELPER.assertCounter(pre + "writeRequestCount", 20, agg);
     HELPER.assertCounter(pre + "totalRequestCount", 30, agg);
@@ -90,6 +92,8 @@ public class TestMetricsTableAggregate {
 
   @Test
   public void testRegionAndStoreMetrics() throws IOException {
+    rsm.updateFlush(tableName, 1, 2, 3);
+    rsm.updateFlush(tableName, 1, 2, 3);
     HELPER.assertGauge(pre + "memstoreSize", 1000, agg);
     HELPER.assertGauge(pre + "storeFileSize", 2000, agg);
     HELPER.assertGauge(pre + "tableSize", 3000, agg);
