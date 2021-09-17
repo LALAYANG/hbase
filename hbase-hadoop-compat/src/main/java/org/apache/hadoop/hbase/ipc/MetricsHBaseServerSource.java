@@ -102,6 +102,7 @@ public interface MetricsHBaseServerSource extends ExceptionTrackingSource {
 
   String NETTY_DM_USAGE_DESC = "Current Netty direct memory usage.";
 
+  void teardown();
 
   void authorizationSuccess();
 

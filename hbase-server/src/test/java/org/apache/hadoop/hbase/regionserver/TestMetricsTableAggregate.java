@@ -33,6 +33,8 @@ import org.apache.hadoop.hbase.testclassification.RegionServerTests;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.slf4j.Logger;
@@ -40,6 +42,9 @@ import org.slf4j.LoggerFactory;
 
 @Category({ RegionServerTests.class, MediumTests.class })
 public class TestMetricsTableAggregate {
+
+  @Rule
+  public TestName name = new TestName();
 
   @ClassRule
   public static final HBaseClassTestRule CLASS_RULE =
@@ -50,8 +55,8 @@ public class TestMetricsTableAggregate {
   private static MetricsAssertHelper HELPER =
     CompatibilityFactory.getInstance(MetricsAssertHelper.class);
 
-  private String tableName = "testTableMetrics";
-  private String pre = "Namespace_default_table_" + tableName + "_metric_";
+  private String tableName;
+  private String pre;
 
   private MetricsTableWrapperStub tableWrapper;
   private MetricsTable mt;
@@ -66,6 +71,8 @@ public class TestMetricsTableAggregate {
 
   @Before
   public void setUp() {
+    tableName = name.getMethodName();
+    pre = "Namespace_default_table_" + tableName + "_metric_";
     tableWrapper = new MetricsTableWrapperStub(tableName);
     mt = new MetricsTable(tableWrapper);
     rsWrapper = new MetricsRegionServerWrapperStub();
@@ -76,6 +83,8 @@ public class TestMetricsTableAggregate {
 
   @Test
   public void testRequestMetrics() throws IOException {
+    rsm.updateFlush(tableName, 1, 2, 3);
+    rsm.updateFlush(tableName, 1, 2, 3);
     HELPER.assertCounter(pre + "readRequestCount", 10, agg);
     HELPER.assertCounter(pre + "writeRequestCount", 20, agg);
     HELPER.assertCounter(pre + "totalRequestCount", 30, agg);
@@ -83,6 +92,8 @@ public class TestMetricsTableAggregate {
 
   @Test
   public void testRegionAndStoreMetrics() throws IOException {
+    rsm.updateFlush(tableName, 1, 2, 3);
+    rsm.updateFlush(tableName, 1, 2, 3);
     HELPER.assertGauge(pre + "memstoreSize", 1000, agg);
     HELPER.assertGauge(pre + "storeFileSize", 2000, agg);
     HELPER.assertGauge(pre + "tableSize", 3000, agg);
